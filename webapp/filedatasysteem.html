@@ -1,0 +1,193 @@
+<!DOCTYPE html >
+<html lang="en" >
+<head >
+    <meta charset="UTF-8">
+    <title>FileDataSysteem</title>
+    <link rel="stylesheet" href="filedatasysteem.css">
+    <script type="text/javascript">
+
+        function projectverwijderen(r) {
+            var i = r.parentNode.parentNode.rowIndex;
+            document.getElementById("table").deleteRow(i);
+        }
+        function projecttoevoegen(){
+            var myTable = document.getElementById("table");
+            var currentIndex = myTable.rows.length;
+            var currentRow = myTable.insertRow(-1);
+
+            var projectnaam = document.createElement("input");
+            projectnaam.setAttribute("name", "name" + currentIndex);
+            projectnaam.setAttribute("class", "project")
+
+            var projecttype = document.createElement("input");
+            projecttype.setAttribute("name", "type" + currentIndex);
+            projecttype.setAttribute("class", "project")
+
+            var projectnummer = document.createElement("input");
+            projectnummer.setAttribute("name", "nummer" + currentIndex);
+            projectnummer.setAttribute("class", "project")
+
+            var projectdatum = document.createElement("input");
+            projectdatum.setAttribute("name", "datum" + currentIndex);
+            projectdatum.setAttribute("class", "project")
+
+            var projectbudget = document.createElement("input");
+            projectbudget.setAttribute("name", "budget" + currentIndex);
+            projectbudget.setAttribute("class", "project")
+
+            var projectwerkuren = document.createElement("input");
+            projectwerkuren.setAttribute("name", "werkuren" + currentIndex);
+            projectwerkuren.setAttribute("class", "project")
+
+            var addRowBox = document.createElement("button");
+            addRowBox.setAttribute("name", "delete" + currentIndex);
+            addRowBox.setAttribute("class", "button")
+            addRowBox.setAttribute("type" , "button")
+            addRowBox.setAttribute("value" , "projectverwijderen")
+            addRowBox.setAttribute("onclick" , "projectverwijderen(this)")
+            addRowBox.setAttribute("id" , "projectverwijderen")
+            addRowBox.textContent = "projectverwijderen";
+
+            var beoordelen = document.createElement("select")
+            beoordelen.setAttribute("name","twee opties kiezen" + currentIndex);
+            beoordelen.setAttribute("value","beoordelen")
+            beoordelen.setAttribute("class","project")
+            beoordelen.setAttribute("id","opties")
+
+            var option = document.createElement("option")
+            option.setAttribute("value" , "")
+            option.textContent = ""
+            beoordelen.appendChild(option)
+
+            var option2 = document.createElement("option")
+            option2.setAttribute("value" , "voltooid")
+            option2.textContent = "voltooid "
+            beoordelen.appendChild(option2)
+
+
+            var option3 = document.createElement("option")
+            option3.setAttribute("value" , "onvoltooid")
+            option3.textContent = "onvoltooid "
+            beoordelen.appendChild(option3)
+
+
+            var currentCell = currentRow.insertCell(-1);
+            currentCell.appendChild(projectnaam);
+
+            currentCell = currentRow.insertCell(-1);
+            currentCell.appendChild(projecttype);
+
+            currentCell = currentRow.insertCell(-1);
+            currentCell.appendChild(projectnummer);
+
+            currentCell = currentRow.insertCell(-1);
+            currentCell.appendChild(projectdatum);
+
+            currentCell = currentRow.insertCell(-1);
+            currentCell.appendChild(projectbudget);
+
+            currentCell = currentRow.insertCell(-1);
+            currentCell.appendChild(projectwerkuren);
+
+            currentCell = currentRow.insertCell(-1);
+            currentCell.appendChild(addRowBox);
+
+            currentCell = currentRow.insertCell(-1);
+            currentCell.appendChild(beoordelen);
+
+        }
+
+    </script>
+</head>
+<body id="filedatasysteem"   >
+<h2 >File Data Systeem</h2>
+
+<button id="projecttoevoegen" value="projecttoevoegen" onclick="projecttoevoegen()" >project toevoegen</button>
+
+
+<!--<form id="projectposten" method="post">-->
+
+    <table width = "96%" border = "1" cellspacing = "" cellpadding = "" bgcolor="white" id="table" >
+    <tr  >
+        <td>projectnaam</td>
+        <td>projectType</td>
+        <td>projectnummer</td>
+        <td>projectdatum</td>
+        <td>projectbudget</td>
+        <td>Werkuren registeren</td>
+        <td>Action</td>
+        <td width="100">beoordelen</td>
+    </tr>
+
+    <tr >
+        <td>
+        <input type="" id="projectnaam" name="name" class="project">
+        </td>
+
+        <td>
+        <input type="" id="projecttype" name="type" class="project">
+        </td>
+
+        <td>
+        <input type="" id="projectnummer" name="nummer" class="project">
+        </td>
+
+        <td>
+        <input type="" id="projectdatum" name="datum" class="project">
+        </td>
+        <td>
+
+        <input type="" id="projectbudget" name="budget" class="project">
+        </td>
+
+        <td>
+        <input type="" id="projectwerkuren" name="werkuren" class="project">
+        </td>
+
+        <td>
+         <input name="delete" type="button" id="projectverwijderen" value="projectverwijderen" class="button" onclick="projectverwijderen(this)">
+        </td>
+
+        <td>
+        <select id="opties" class="project" name="twee opties kiezen" value="beoordelen" >
+        <option value="" ></option>
+            <option value="voltooid">voltooid </option>
+            <option value="onvoltooid">onvoltooid </option>
+        </select>
+        </td>
+
+    </tr>
+</table>
+<!--</form>-->
+
+<script>
+// document.querySelector("#projecttoevoegen").addEventListener("click",function (){
+// var formData = new FormData(document.querySelector("#projectposten"))
+// var encData = new URLSearchParams(formData.entries());
+// console.log('test');
+// fetch("rest/filedatasysteem",{method : 'POST',body : encData})
+// .then(response => response.json())
+// .then(function (myJson){
+// console.log(myJson)
+// });
+// });
+
+// let deleteButton = document.createElement('button');
+//
+// deleteButton.textContent = "X";
+//
+// deleteButton.addEventListener('click', event => deleteSubject(event, key));
+//
+// subjectsTemplateClone.querySelector(".delete").append(deleteButton);
+
+
+
+</script>
+</body>
+</html>
+
+<!--<select id="opties" class="project" name="twee opties kiezen" value="beoordelen" >-->
+<!--    <option value="" selected>Kies voltooid of onvoltooid</option>-->
+<!--    <option value="voltooid">voltooid </option>-->
+<!--    <option value="onvoltooid">onvoltooid </option>-->
+<!--</select>-->
