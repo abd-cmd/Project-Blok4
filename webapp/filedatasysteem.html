@@ -4,108 +4,33 @@
     <meta charset="UTF-8">
     <title>FileDataSysteem</title>
     <link rel="stylesheet" href="filedatasysteem.css">
+    <style>
+           #projecttoevoegen{
+               position: absolute;
+               top: 20px;
+           }
+           .back{
+               position: absolute;
+               top: 20px;
+               right: 230px;
+           }
+    </style>
     <script type="text/javascript">
 
-        function projectverwijderen(r) {
-            var i = r.parentNode.parentNode.rowIndex;
-            document.getElementById("table").deleteRow(i);
-        }
-        function projecttoevoegen(){
-            var myTable = document.getElementById("table");
-            var currentIndex = myTable.rows.length;
-            var currentRow = myTable.insertRow(-1);
-
-            var projectnaam = document.createElement("input");
-            projectnaam.setAttribute("name", "name" + currentIndex);
-            projectnaam.setAttribute("class", "project")
-
-            var projecttype = document.createElement("input");
-            projecttype.setAttribute("name", "type" + currentIndex);
-            projecttype.setAttribute("class", "project")
-
-            var projectnummer = document.createElement("input");
-            projectnummer.setAttribute("name", "nummer" + currentIndex);
-            projectnummer.setAttribute("class", "project")
-
-            var projectdatum = document.createElement("input");
-            projectdatum.setAttribute("name", "datum" + currentIndex);
-            projectdatum.setAttribute("class", "project")
-
-            var projectbudget = document.createElement("input");
-            projectbudget.setAttribute("name", "budget" + currentIndex);
-            projectbudget.setAttribute("class", "project")
-
-            var projectwerkuren = document.createElement("input");
-            projectwerkuren.setAttribute("name", "werkuren" + currentIndex);
-            projectwerkuren.setAttribute("class", "project")
-
-            var addRowBox = document.createElement("button");
-            addRowBox.setAttribute("name", "delete" + currentIndex);
-            addRowBox.setAttribute("class", "button")
-            addRowBox.setAttribute("type" , "button")
-            addRowBox.setAttribute("value" , "projectverwijderen")
-            addRowBox.setAttribute("onclick" , "projectverwijderen(this)")
-            addRowBox.setAttribute("id" , "projectverwijderen")
-            addRowBox.textContent = "projectverwijderen";
-
-            var beoordelen = document.createElement("select")
-            beoordelen.setAttribute("name","twee opties kiezen" + currentIndex);
-            beoordelen.setAttribute("value","beoordelen")
-            beoordelen.setAttribute("class","project")
-            beoordelen.setAttribute("id","opties")
-
-            var option = document.createElement("option")
-            option.setAttribute("value" , "")
-            option.textContent = ""
-            beoordelen.appendChild(option)
-
-            var option2 = document.createElement("option")
-            option2.setAttribute("value" , "voltooid")
-            option2.textContent = "voltooid "
-            beoordelen.appendChild(option2)
-
-
-            var option3 = document.createElement("option")
-            option3.setAttribute("value" , "onvoltooid")
-            option3.textContent = "onvoltooid "
-            beoordelen.appendChild(option3)
-
-
-            var currentCell = currentRow.insertCell(-1);
-            currentCell.appendChild(projectnaam);
-
-            currentCell = currentRow.insertCell(-1);
-            currentCell.appendChild(projecttype);
-
-            currentCell = currentRow.insertCell(-1);
-            currentCell.appendChild(projectnummer);
-
-            currentCell = currentRow.insertCell(-1);
-            currentCell.appendChild(projectdatum);
-
-            currentCell = currentRow.insertCell(-1);
-            currentCell.appendChild(projectbudget);
-
-            currentCell = currentRow.insertCell(-1);
-            currentCell.appendChild(projectwerkuren);
-
-            currentCell = currentRow.insertCell(-1);
-            currentCell.appendChild(addRowBox);
-
-            currentCell = currentRow.insertCell(-1);
-            currentCell.appendChild(beoordelen);
-
-        }
 
     </script>
 </head>
-<body id="filedatasysteem"   >
+<body>
 <h2 >File Data Systeem</h2>
 
-<button id="projecttoevoegen" value="projecttoevoegen" onclick="projecttoevoegen()" >project toevoegen</button>
+<form action="login.html">
+    <input class="back" name="submit2" type="submit" id="submit2" value="logout">
+</form>
 
 
 <!--<form id="projectposten" method="post">-->
+
+    <button id="projecttoevoegen" value="projecttoevoegen" onclick="projecttoevoegen()" >project toevoegen</button>
 
     <table width = "96%" border = "1" cellspacing = "" cellpadding = "" bgcolor="white" id="table" >
     <tr  >
@@ -115,6 +40,7 @@
         <td>projectdatum</td>
         <td>projectbudget</td>
         <td>Werkuren registeren</td>
+        <td>projectopslaan</td>
         <td>Action</td>
         <td width="100">beoordelen</td>
     </tr>
@@ -135,13 +61,17 @@
         <td>
         <input type="" id="projectdatum" name="datum" class="project">
         </td>
-        <td>
 
+        <td>
         <input type="" id="projectbudget" name="budget" class="project">
         </td>
 
         <td>
         <input type="" id="projectwerkuren" name="werkuren" class="project">
+        </td>
+
+        <td>
+            <input name="bewaar" type="button" value="projectopslaan" id="opslaan" class="project" onclick="projectopslaan(this)">
         </td>
 
         <td>
@@ -158,27 +88,153 @@
 
     </tr>
 </table>
+
 <!--</form>-->
 
-<script>
-// document.querySelector("#projecttoevoegen").addEventListener("click",function (){
-// var formData = new FormData(document.querySelector("#projectposten"))
-// var encData = new URLSearchParams(formData.entries());
-// console.log('test');
-// fetch("rest/filedatasysteem",{method : 'POST',body : encData})
-// .then(response => response.json())
-// .then(function (myJson){
-// console.log(myJson)
-// });
-// });
+<script type="text/javascript">
 
-// let deleteButton = document.createElement('button');
-//
-// deleteButton.textContent = "X";
-//
-// deleteButton.addEventListener('click', event => deleteSubject(event, key));
-//
-// subjectsTemplateClone.querySelector(".delete").append(deleteButton);
+    function projectverwijderen(r) {
+        var i = r.parentNode.parentNode.rowIndex;
+        document.getElementById("table").deleteRow(i);
+    }
+    function projecttoevoegen(){
+        var myTable = document.getElementById("table");
+        var currentIndex = myTable.rows.length;
+        var currentRow = myTable.insertRow(-1);
+
+        var projectnaam = document.createElement("input");
+        projectnaam.setAttribute("name", "name" + currentIndex);
+        projectnaam.setAttribute("class", "project")
+
+        var projecttype = document.createElement("input");
+        projecttype.setAttribute("name", "type" + currentIndex);
+        projecttype.setAttribute("class", "project")
+
+        var projectnummer = document.createElement("input");
+        projectnummer.setAttribute("name", "nummer" + currentIndex);
+        projectnummer.setAttribute("class", "project")
+
+        var projectdatum = document.createElement("input");
+        projectdatum.setAttribute("name", "datum" + currentIndex);
+        projectdatum.setAttribute("class", "project")
+
+        var projectbudget = document.createElement("input");
+        projectbudget.setAttribute("name", "budget" + currentIndex);
+        projectbudget.setAttribute("class", "project")
+
+        var projectwerkuren = document.createElement("input");
+        projectwerkuren.setAttribute("name", "werkuren" + currentIndex);
+        projectwerkuren.setAttribute("class", "project")
+
+        var projectopslaan = document.createElement("input")
+        projectopslaan.setAttribute("name","bewaar" + currentIndex)
+        projectopslaan.setAttribute("class","project")
+        projectopslaan.setAttribute("id","opslaan")
+        projectopslaan.setAttribute("value","projectopslaan")
+        projectopslaan.setAttribute("type","button")
+        projectopslaan.setAttribute("onclick", "projectopslaan(this)");
+
+        var addRowBox = document.createElement("button");
+        addRowBox.setAttribute("name", "delete" + currentIndex);
+        addRowBox.setAttribute("class", "button")
+        addRowBox.setAttribute("type" , "button")
+        addRowBox.setAttribute("value" , "projectverwijderen")
+        addRowBox.setAttribute("onclick" , "projectverwijderen(this)")
+        addRowBox.setAttribute("id" , "projectverwijderen")
+        addRowBox.textContent = "projectverwijderen";
+
+        var beoordelen = document.createElement("select")
+        beoordelen.setAttribute("name","twee opties kiezen" + currentIndex);
+        beoordelen.setAttribute("value","beoordelen")
+        beoordelen.setAttribute("class","project")
+        beoordelen.setAttribute("id","opties")
+
+        var option = document.createElement("option")
+        option.setAttribute("value" , "")
+        option.textContent = ""
+        beoordelen.appendChild(option)
+
+        var option2 = document.createElement("option")
+        option2.setAttribute("value" , "voltooid")
+        option2.textContent = "voltooid "
+        beoordelen.appendChild(option2)
+
+
+        var option3 = document.createElement("option")
+        option3.setAttribute("value" , "onvoltooid")
+        option3.textContent = "onvoltooid "
+        beoordelen.appendChild(option3)
+
+
+        var currentCell = currentRow.insertCell(-1);
+        currentCell.appendChild(projectnaam);
+
+        currentCell = currentRow.insertCell(-1);
+        currentCell.appendChild(projecttype);
+
+        currentCell = currentRow.insertCell(-1);
+        currentCell.appendChild(projectnummer);
+
+        currentCell = currentRow.insertCell(-1);
+        currentCell.appendChild(projectdatum);
+
+        currentCell = currentRow.insertCell(-1);
+        currentCell.appendChild(projectbudget);
+
+        currentCell = currentRow.insertCell(-1);
+        currentCell.appendChild(projectwerkuren);
+
+        currentCell = currentRow.insertCell(-1)
+        currentCell.appendChild(projectopslaan)
+
+        currentCell = currentRow.insertCell(-1);
+        currentCell.appendChild(addRowBox);
+
+        currentCell = currentRow.insertCell(-1);
+        currentCell.appendChild(beoordelen);
+
+    }
+
+    function projectopslaan(opslaanButton){
+        var tablerowToSave = opslaanButton.parentNode.parentNode;
+
+        var projectnaam = tablerowToSave.cells[0].firstElementChild.value;
+        console.log(projectnaam);
+
+        var projecttype = tablerowToSave.cells[1].firstElementChild.value;
+        console.log(projecttype);
+
+        var projectnummer = tablerowToSave.cells[2].firstElementChild.value;
+        console.log(projectnummer);
+
+        var projectdatum = tablerowToSave.cells[3].firstElementChild.value;
+        console.log(projectdatum);
+
+        var projectbudget = tablerowToSave.cells[4].firstElementChild.value;
+        console.log(projectbudget);
+
+        var projectwerkurenregisteren = tablerowToSave.cells[5].firstElementChild.value;
+        console.log(projectwerkurenregisteren);
+
+        var projectbeoordelen = tablerowToSave.cells[8].firstElementChild.value;
+        console.log(projectbeoordelen);
+
+        var formData = new FormData();
+        formData.append("projectnaam", projectnaam);
+        formData.append("projecttype", projecttype);
+        formData.append("projectnummer",projectnummer);
+        formData.append("projectdatum",projectdatum);
+        formData.append("projectbudget",projectbudget);
+        formData.append("Werkurenregisteren",projectwerkurenregisteren);
+        formData.append("opties",projectbeoordelen);
+        var encData = new URLSearchParams(formData.entries());
+        console.log('test');
+        fetch("restservices/filedatasysteem",{method : 'POST',body : encData})
+            .then(response => response.json())
+            .then(function (myJson){
+                console.log(myJson)
+            });
+    }
 
 
 
@@ -186,8 +242,3 @@
 </body>
 </html>
 
-<!--<select id="opties" class="project" name="twee opties kiezen" value="beoordelen" >-->
-<!--    <option value="" selected>Kies voltooid of onvoltooid</option>-->
-<!--    <option value="voltooid">voltooid </option>-->
-<!--    <option value="onvoltooid">onvoltooid </option>-->
-<!--</select>-->

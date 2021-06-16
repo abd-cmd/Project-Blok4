@@ -11,6 +11,9 @@ public class FileDataSysteem {
     public FileDataSysteem(){
     }
 
+    public void setAccounts(List<Account> accounts){
+        Accounts = accounts;
+    }
 
     public List<Project> listVanProjects(){
         return projects;

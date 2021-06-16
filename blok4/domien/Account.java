@@ -1,14 +1,28 @@
 package blok4.domien;
 
+import java.util.ArrayList;
+
 public class Account {
-    private String wachtwoord;
-    private String emailadres;
+    private  String wachtwoord;
+    private  String emailadres;
+    private  String role;
     private Projectmanager projectmanager;
 
-    public Account(String Ww,String EA){
+    private static ArrayList<Account> accounts;
+
+    static {
+        accounts = new ArrayList<>();
+        accounts.add(new Account("ssss","ssss","projectmanager"));
+    }
+
+    public Account(String Ww,String EA,String re){
         wachtwoord = Ww;
         emailadres = EA;
+        role = re;
+        accounts.add(this);
     }
+
+
 
     public String getWachtwoord(){
         return wachtwoord;
@@ -38,8 +52,16 @@ public class Account {
         return getWachtwoord().equals(Ww);
     }
 
-    public String toString(){
-        return "Account informatie : " + wachtwoord + " , " + emailadres;
+    public static String validateLogin(String ww,String ea){
+        for (Account A : accounts) {
+            System.out.println(A);
+            if (A.emailadres.equals(ea) && A.wachtwoord.equals(ww)) {
+                return A.role;
+            }
+        }
+
+        return null;
     }
+
 
 }

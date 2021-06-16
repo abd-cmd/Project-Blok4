@@ -6,6 +6,7 @@ import blok4.domien.Project;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -13,7 +14,7 @@ class FileDataSysteemTest {
 
     @Test
     public void TestAlsProjectzitInFileDataSysteem(){
-        Project P1 = new Project("NS Spoorwegen engineering","engineering",2000.000,39384, LocalDate.of(2021,12,12));
+        Project P1 = new Project("NS Spoorwegen engineering","engineering",2000.000,39384, new Date(2021,12,12));
         FileDataSysteem F1 = new FileDataSysteem();
         F1.listVanProjects().add(P1);
         System.out.println(F1.listVanProjects());
@@ -22,7 +23,7 @@ class FileDataSysteemTest {
 
     @Test
     public void TestAlsAccountZitInFileDataSysteem(){
-        Account A1 = new Account("admin1","abd1233@hotmail.com");
+        Account A1 = new Account("admin1","abd1233@hotmail.com","projectmanager");
         FileDataSysteem F1 = new FileDataSysteem();
         F1.listVanAccounts().add(A1);
         System.out.println(F1.listVanAccounts());
@@ -32,7 +33,7 @@ class FileDataSysteemTest {
 
     @Test
     public void TestAlsProjectNietzitInFileDataSysteem(){
-        Project P1 = new Project("NS Spoorwegen engineering","engineering",2000.000,39384, LocalDate.of(2021,12,12));
+        Project P1 = new Project("NS Spoorwegen engineering","engineering",2000.000,39384, new Date(2021,12,12));
         FileDataSysteem F1 = new FileDataSysteem();
         assertFalse(F1.listVanProjects().contains(P1));
 
@@ -40,7 +41,7 @@ class FileDataSysteemTest {
 
     @Test
     public void TestAlsAccountNietZitInFileDataSysteem() {
-        Account A1 = new Account("admin1", "abd1233@hotmail.com");
+        Account A1 = new Account("admin1", "abd1233@hotmail.com","projectmanager");
         FileDataSysteem F1 = new FileDataSysteem();
         assertFalse(F1.listVanAccounts().contains(A1));
     }

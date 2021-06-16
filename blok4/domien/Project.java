@@ -4,15 +4,16 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 public class Project {
     private double projectbudget;
     private String projectnaam;
     private String projecttype;
-    private LocalDate projectdatum;
+    private Date projectdatum;
     private int projectnummer;
 
-    public Project(String naam, String type, double budget, int nummer, LocalDate datum){
+    public Project(String naam, String type, double budget, int nummer, Date datum){
         projectbudget = budget;
         projectnummer = nummer;
         projectdatum = datum;
@@ -25,7 +26,7 @@ public class Project {
         return projectbudget;
     }
 
-    public LocalDate getProjectdatum(){
+    public Date getProjectdatum(){
         return projectdatum;
     }
 
@@ -44,7 +45,7 @@ public class Project {
     public void SetNewProjectBudget(double PB){
         projectbudget = PB;
     }
-    public void SetNewProjectDatum(LocalDate PD){
+    public void SetNewProjectDatum(Date PD){
         projectdatum = PD;
     }
     public void SetNewProjectNummer(int PN){
