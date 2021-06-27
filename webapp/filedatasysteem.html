@@ -23,14 +23,14 @@
 <body>
 <h2 >File Data Systeem</h2>
 
-<form action="login.html">
-    <input class="back" name="submit2" type="submit" id="submit2" value="logout">
+<form action="account.html">
+    <input class="back" name="submit2" type="submit" id="submit2" value="back">
 </form>
 
+<button id="projecttoevoegen" value="projecttoevoegen" onclick="projecttoevoegen()" >project toevoegen</button>
 
-<!--<form id="projectposten" method="post">-->
 
-    <button id="projecttoevoegen" value="projecttoevoegen" onclick="projecttoevoegen()" >project toevoegen</button>
+<!--<form id="project">-->
 
     <table width = "96%" border = "1" cellspacing = "" cellpadding = "" bgcolor="white" id="table" >
     <tr  >
@@ -47,35 +47,35 @@
 
     <tr >
         <td>
-        <input type="" id="projectnaam" name="name" class="project">
+        <input type="" id="projectnaam" name="projectnaam" class="project">
         </td>
 
         <td>
-        <input type="" id="projecttype" name="type" class="project">
+        <input type="" id="projecttype" name="projecttype" class="project">
         </td>
 
         <td>
-        <input type="" id="projectnummer" name="nummer" class="project">
+        <input type="" id="projectnummer" name="projectnummer" class="project">
         </td>
 
         <td>
-        <input type="" id="projectdatum" name="datum" class="project">
+        <input type="" id="projectdatum" name="projectdatum" class="project">
         </td>
 
         <td>
-        <input type="" id="projectbudget" name="budget" class="project">
+        <input type="" id="projectbudget" name="projectbudget" class="project">
         </td>
 
         <td>
-        <input type="" id="projectwerkuren" name="werkuren" class="project">
+        <input type="" id="projectwerkuren" name="projectwerkuren" class="project">
         </td>
 
         <td>
-            <input name="bewaar" type="button" value="projectopslaan" id="opslaan" class="project" onclick="projectopslaan(this)">
+            <input name="bewaar" type="button" value="projectopslaan" id="opslaan" class="project" onclick="Projectopslaan(this)">
         </td>
 
         <td>
-         <input name="delete" type="button" id="projectverwijderen" value="projectverwijderen" class="button" onclick="projectverwijderen(this)">
+         <input name="delete" type="button" id="projectverwijderen" value="projectverwijderen" class="button" onclick="projectverwijderen(this)" >
         </td>
 
         <td>
@@ -96,6 +96,30 @@
     function projectverwijderen(r) {
         var i = r.parentNode.parentNode.rowIndex;
         document.getElementById("table").deleteRow(i);
+
+
+        var tablerowTodelete = r.parentNode.parentNode;
+
+        var projectnaam = tablerowTodelete.cells[0].firstElementChild.value;
+        console.log(projectnaam);
+
+        var formData = new FormData();
+        formData.append("projectnaam", projectnaam);
+        // formData.append("projecttype", projecttype);
+        // formData.append("projectnummer", projectnummer);
+        // formData.append("projectdatum", projectdatum);
+        // formData.append("projectbudget", projectbudget);
+        // formData.append("Werkurenregisteren", projectwerkurenregisteren);
+        // formData.append("opties", projectbeoordelen);
+        var encData = new URLSearchParams(formData.entries());
+        console.log('test');
+        fetch("restservices/filedatasysteemVerwijderen", {method: 'DELETE', body: encData,
+            headers:{  "Authorization": "Bearer "+ window.sessionStorage.getItem("JWT")
+            }})
+            .then(response => response.json())
+            .then(function (myJson) {
+                console.log(myJson)
+            });
     }
     function projecttoevoegen(){
         var myTable = document.getElementById("table");
@@ -103,28 +127,34 @@
         var currentRow = myTable.insertRow(-1);
 
         var projectnaam = document.createElement("input");
-        projectnaam.setAttribute("name", "name" + currentIndex);
+        projectnaam.setAttribute("name", "projectnaam" + currentIndex);
         projectnaam.setAttribute("class", "project")
+        projectnaam.setAttribute("id", "projectnaam")
 
         var projecttype = document.createElement("input");
-        projecttype.setAttribute("name", "type" + currentIndex);
+        projecttype.setAttribute("name", "projecttype" + currentIndex);
         projecttype.setAttribute("class", "project")
+        projecttype.setAttribute("id", "projecttype")
 
         var projectnummer = document.createElement("input");
-        projectnummer.setAttribute("name", "nummer" + currentIndex);
+        projectnummer.setAttribute("name", "projectnummer" + currentIndex);
         projectnummer.setAttribute("class", "project")
+        projectnummer.setAttribute("id", "projectnummer")
 
         var projectdatum = document.createElement("input");
-        projectdatum.setAttribute("name", "datum" + currentIndex);
+        projectdatum.setAttribute("name", "projectdatum" + currentIndex);
         projectdatum.setAttribute("class", "project")
+        projectdatum.setAttribute("id", "projectdatum")
 
         var projectbudget = document.createElement("input");
-        projectbudget.setAttribute("name", "budget" + currentIndex);
+        projectbudget.setAttribute("name", "projectbudget" + currentIndex);
         projectbudget.setAttribute("class", "project")
+        projectbudget.setAttribute("id", "projectbudget")
 
         var projectwerkuren = document.createElement("input");
-        projectwerkuren.setAttribute("name", "werkuren" + currentIndex);
+        projectwerkuren.setAttribute("name", "projectwerkuren" + currentIndex);
         projectwerkuren.setAttribute("class", "project")
+        projectwerkuren.setAttribute("id", "projectwerkuren")
 
         var projectopslaan = document.createElement("input")
         projectopslaan.setAttribute("name","bewaar" + currentIndex)
@@ -132,16 +162,16 @@
         projectopslaan.setAttribute("id","opslaan")
         projectopslaan.setAttribute("value","projectopslaan")
         projectopslaan.setAttribute("type","button")
-        projectopslaan.setAttribute("onclick", "projectopslaan(this)");
+        projectopslaan.setAttribute("onclick", "Projectopslaan(this)")
 
-        var addRowBox = document.createElement("button");
-        addRowBox.setAttribute("name", "delete" + currentIndex);
-        addRowBox.setAttribute("class", "button")
-        addRowBox.setAttribute("type" , "button")
-        addRowBox.setAttribute("value" , "projectverwijderen")
-        addRowBox.setAttribute("onclick" , "projectverwijderen(this)")
-        addRowBox.setAttribute("id" , "projectverwijderen")
-        addRowBox.textContent = "projectverwijderen";
+        var Projectopslaan = document.createElement("button");
+        Projectopslaan.setAttribute("name", "delete" + currentIndex);
+        Projectopslaan.setAttribute("class", "button")
+        Projectopslaan.setAttribute("type" , "button")
+        Projectopslaan.setAttribute("value" , "projectverwijderen")
+        Projectopslaan.setAttribute("onclick" , "projectverwijderen(this)")
+        Projectopslaan.setAttribute("id" , "projectverwijderen")
+        Projectopslaan.textContent = "projectverwijderen";
 
         var beoordelen = document.createElement("select")
         beoordelen.setAttribute("name","twee opties kiezen" + currentIndex);
@@ -188,14 +218,13 @@
         currentCell.appendChild(projectopslaan)
 
         currentCell = currentRow.insertCell(-1);
-        currentCell.appendChild(addRowBox);
+        currentCell.appendChild(Projectopslaan);
 
         currentCell = currentRow.insertCell(-1);
         currentCell.appendChild(beoordelen);
 
     }
-
-    function projectopslaan(opslaanButton){
+    function Projectopslaan(opslaanButton) {
         var tablerowToSave = opslaanButton.parentNode.parentNode;
 
         var projectnaam = tablerowToSave.cells[0].firstElementChild.value;
@@ -222,22 +251,32 @@
         var formData = new FormData();
         formData.append("projectnaam", projectnaam);
         formData.append("projecttype", projecttype);
-        formData.append("projectnummer",projectnummer);
-        formData.append("projectdatum",projectdatum);
-        formData.append("projectbudget",projectbudget);
-        formData.append("Werkurenregisteren",projectwerkurenregisteren);
-        formData.append("opties",projectbeoordelen);
+        formData.append("projectnummer", projectnummer);
+        formData.append("projectdatum", projectdatum);
+        formData.append("projectbudget", projectbudget);
+        formData.append("Werkurenregisteren", projectwerkurenregisteren);
+        formData.append("opties", projectbeoordelen);
         var encData = new URLSearchParams(formData.entries());
         console.log('test');
-        fetch("restservices/filedatasysteem",{method : 'POST',body : encData})
+
+        fetch("restservices/filedatasysteem", {method: 'POST', body: encData, headers:{
+            "Authorization": "Bearer "+ window.sessionStorage.getItem("JWT")
+            }})
             .then(response => response.json())
-            .then(function (myJson){
+            .then(function (myJson) {
                 console.log(myJson)
             });
+        // document.querySelector("#opslaan").addEventListener("click",function (){
+        //     var FormData = new FormData(document.querySelector("#project"))
+        //     var encData = new URLSearchParams(FormData.entries())
+        //
+        //     fetch("restservices/ProjectInfoPost" , {method:'POST' , body:encData})
+        //         .then(response => response.json())
+        //         .then(function (myJson){
+        //             console.log(myJson)
+        //         });
+        // });
     }
-
-
-
 </script>
 </body>
 </html>

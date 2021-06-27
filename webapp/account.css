@@ -1,0 +1,130 @@
+.main {
+    background: #f8f8f8;
+    padding: 150px 0;
+}
+img {
+    max-width: 100%;
+    height: auto;
+}
+figure {
+    margin-bottom: 50px;
+    text-align: center;
+}
+body {
+    font-size: 13px;
+    line-height: 1.8;
+    color: #222;
+    background: #f8f8f8;
+    font-weight: 400;
+    font-family: Poppins;
+}
+.signin-content {
+    padding-top: 67px;
+    padding-bottom: 87px;
+}
+.container {
+    width: 900px;
+    background: #fff;
+    margin: 0 auto;
+    /*box-shadow: 0 15px 16.83px 0.17px rgb(0 0 0 / 5%);*/
+    -moz-box-shadow: 0 15px 16.83px .17px rgba(0,0,0,.05);
+    -webkit-box-shadow: 0 15px 16.83px 0.17px rgb(0 0 05%);
+    -o-box-shadow: 0 15px 16.83px .17px rgba(0,0,0,.05);
+    -ms-box-shadow: 0 15px 16.83px .17px rgba(0,0,0,.05);
+    border-radius: 20px;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -o-border-radius: 20px;
+    -ms-border-radius: 20px;
+}
+@media screen and (max-width: 1200px) {
+    .container {
+        width: calc(100% - 30px);
+        max-width: 100%;
+    }
+}
+display-flex, .display-flex, .display-flex-center, .signup-content, .signin-content, .social-login, .socials {
+    display: flex;
+    display: -webkit-flex;
+}
+
+div{
+    display: block;
+}
+.signin-image {
+    margin-left: 110px;
+    margin-right: 20px;
+    margin-top: 10px;
+}
+.signup-form, .signup-image, .signin-form, .signin-image {
+    width: 50%;
+    overflow: hidden;
+}
+.material-icons-name {
+    font-size: 18px;
+}
+.zmdi {
+    display: inline-block;
+    font: normal normal normal 14px/1 'Material-Design-Iconic-Font';
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+label {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    color: #222;
+}
+label {
+    cursor: default;
+}
+.zmdi-account:before {
+    content: '\f207';
+}
+
+.icon {
+    padding: 10px;
+    background: dodgerblue;
+    color: white;
+    min-width: 50px;
+    text-align: center;
+}
+.input-container {
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    width: 100%;
+    margin-bottom: 15px;
+}
+.form-group:last-child {
+    margin-bottom: 0;
+}
+.form-group {
+    position: relative;
+    margin-bottom: 25px;
+    overflow: hidden;
+}
+#signin {
+    margin-top: 16px;
+}
+.form-submit {
+    display: inline-block;
+    background: #6dabe4;
+    color: #fff;
+    border-bottom: none;
+    width: auto;
+    padding: 15px 39px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -o-border-radius: 5px;
+    -ms-border-radius: 5px;
+    margin-top: 25px;
+    cursor: pointer;
+}

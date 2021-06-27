@@ -5,21 +5,27 @@ import java.util.List;
 
 public class FileDataSysteem {
 
-    private List<Project> projects = new ArrayList<>();
-    private List<Account> Accounts = new ArrayList<>();
+    private ArrayList<Project> projects = new ArrayList<>(); // lijst attribut van project die projects bevat
+    // het koppelt ook dit class aan de class van project
+    private ArrayList<Account> Accounts = new ArrayList<>(); // lijst attribut van Account die Accounts bevat
+    // het koppelt ook dit class aan de class van Account
 
     public FileDataSysteem(){
     }
 
-    public void setAccounts(List<Account> accounts){
-        Accounts = accounts;
+    private static FileDataSysteem myFileDataSysteem = new FileDataSysteem();// de static attribut die helpt om de class zelf aan te roepen
+    public static FileDataSysteem getMyFileDataSysteem(){
+        // de getter voor de static attribut
+        return myFileDataSysteem;
     }
 
-    public List<Project> listVanProjects(){
+
+    public ArrayList<Project> listVanProjects(){
+        //
         return projects;
     }
 
-    public List<Account> listVanAccounts(){
+    public ArrayList<Account> listVanAccounts(){
         return Accounts;
     }
 

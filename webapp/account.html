@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="account.css">
+    <style>
+        .sign-in{
+            position: absolute;
+            top: 100px;
+            left: 300px;
+        }
+    </style>
+</head>
+<body>
+<div class="main">
+<section class="sign-in" >
+     <div class="container">
+      <div class="signin-content">
+        <div class="signin-image">
+         <figure>
+          <img src="/assets/signin-image.jpg" alt="test"  class="">
+         </figure>
+        </div >
+        <div class="signin-form">
+            <h2 class="form-title">Welcome</h2>
+<!--            <form method="POST" class="register-form" id="login-form">-->
+              <div class="register-form" id="login form">
+<!--                <div class="input-container">-->
+<!--                    <i class="fas fa-user icon"></i>-->
+<!--                    <input class="input-field" name="usrnm">-->
+<!--                </div>-->
+<!--                <div class="input-container">-->
+<!--                    <i class="fas fa-user icon"></i>-->
+<!--                    <input class="input-field" name="usrnm">-->
+<!--                </div>-->
+<!--                <form id="Datasysteem">-->
+                <div class="form-group form-button">
+                    <input type="submit" name="signin" id="filedatasysteem" class="form-submit" value="filedatasysteem">
+                </div>
+<!--                </form>-->
+<!--                <form id="Json">-->
+                  <div class="form-group form-button">
+                      <input type="submit" name="signin" id="JsonFile" class="form-submit" value="JsonFile">
+                  </div>
+<!--                </form>-->
+<!--                <form id="uitloggen">-->
+                <div class="form-group form-button">
+                    <input type="submit" name="signin" id="logut" class="form-submit" value="log out ">
+                </div>
+<!--                </form>-->
+              </div>
+<!--            </form>-->
+        </div>
+      </div>
+     </div>
+</section>
+</div>
+</body>
+<script type="text/javascript">
+         document.getElementById("JsonFile").onclick = function (){
+           location.href = "/restservices/lijst"
+         };
+         document.getElementById("filedatasysteem").onclick = function (){
+             location.href = "filedatasysteem.html"
+         }
+         document.getElementById("logut").onclick = function (){
+             location.href = "login.html"
+         }
+</script>
+</html>

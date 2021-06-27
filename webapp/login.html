@@ -12,12 +12,12 @@
 
            fetch("restservices/login", {
                method: "POST",
-               body: encData
+               body: encData,
            })
                .then((response) => {
                    if (response.ok){
                        document.getElementById("loginButton").onclick = function () {
-                           location.href = "filedatasysteem.html";
+                           location.href = "account.html";
                        };
                        return response.json();}
 
@@ -25,7 +25,7 @@
                })
                .then((data) => {
                    window.localStorage.setItem("JWT", data.JWT);
-                   location.replace("filedatasysteem.html");
+                   location.replace("account.html");
                })
                .catch((error) => {
                    console.log(error);

@@ -14,9 +14,11 @@ import java.util.Date;
 
 @WebListener
 public class ContextListener implements ServletContextListener {
-    @Override
 
+    @Override
     public void contextInitialized(ServletContextEvent sce) {
+        // de contextInitialized doet wat er moet gebeuren zodra de applicatie is gestart
+
         Project P1 = new Project("NS Spoorwegen engineering","engineering",2000.000,39384, new Date(2021,12,12));
 
         Projectmanager PM1 = new Projectmanager("abd",178594);
@@ -33,7 +35,10 @@ public class ContextListener implements ServletContextListener {
 
         F1.listVanAccounts().add(A1);
         F1.listVanAccounts().add(A2);
+
     }
+
+    @Override
     public void contextDestroyed(ServletContextEvent sce){
        System.out.println("het is voorbij");
     }
